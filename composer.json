@@ -1,0 +1,11 @@
+{
+    "name": "asdfdev/thelia-bitpay",
+    "type": "thelia-module",
+    "require": {
+        "thelia/installer": "~1.1",
+		"bitpay/php-client": "^2.2"
+    },
+    "extra": {
+        "installer-name": "Bitpay"
+    }
+}

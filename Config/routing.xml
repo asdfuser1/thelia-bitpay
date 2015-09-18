@@ -28,7 +28,7 @@
     </route>
     -->
 
-    <route id="bitpay.configure" path="/admin/module/bitpayPayments/configure" methods="post">
+    <route id="bitpay.configure" path="/admin/module/BitpayPayments/configure" methods="post">
         <default key="_controller">BitpayPayments\Controller\ConfigureBitpayPayments::configure</default>
     </route>
 

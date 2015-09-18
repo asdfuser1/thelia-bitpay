@@ -4,6 +4,7 @@ namespace BitpayPayments;
 use BitpayPayments\Model\BitpayPaymentsConfig;
 use Propel\Generator\Model\Database;
 use Propel\Runtime\Connection\ConnectionInterface;
+use Thelia\Core\Thelia;
 use Thelia\Log\Tlog;
 use Thelia\Model\Base\ModuleQuery;
 use Thelia\Model\ModuleImageQuery;
@@ -94,7 +95,6 @@ class BitpayPayments extends BaseModule implements PaymentModuleInterface
                 $config->setPairingKeyCurrentEnvironment('');
             }
         }
-        $config->save();
 
         // token should be available now
         $token = new \Bitpay\Token();
@@ -146,7 +146,7 @@ class BitpayPayments extends BaseModule implements PaymentModuleInterface
         $this->privateKey->generate();
 
         $this->publicKey = new \Bitpay\PublicKey(THELIA_CACHE_DIR . 'bitpay.pub');
-        $this->publicKey->generate();
+        $this->publicKey->generate($this->privateKey);
 
         $storageEngine = new \Bitpay\Storage\FilesystemStorage();
         $storageEngine->persist($this->privateKey);
@@ -189,6 +189,8 @@ class BitpayPayments extends BaseModule implements PaymentModuleInterface
 
     public function postActivation(ConnectionInterface $con = null)
     {
+        return;
+
         $database = new Database($con->getWrappedConnection());
 
         $database->insertSql(null, array(__DIR__ . '/Config/thelia.sql'));

@@ -11,8 +11,8 @@
     </loops>
 
     <forms>
-        <form name="bitpay.configure" class="Bitpay\Form\ConfigureBitpayPayments" />
-        <form name="bitpay.configure.sandbox" class="Bitpay\Form\ConfigureSandboxBitpayPayments" />
+        <form name="bitpay.configure" class="BitpayPayments\Form\ConfigureBitpayPayments" />
+        <form name="bitpay.configure.sandbox" class="BitpayPayments\Form\ConfigureSandboxBitpayPayments" />
     </forms>
 
     <commands>

@@ -42,7 +42,7 @@ class BitpayPaymentsConfig extends BaseBitpayPaymentsConfig
         $obj = new BitpayPaymentsConfig();
         $obj->pushValues();
         $this_class_vars = get_object_vars($obj);
-        $base_class_vars = get_class_vars("\\Bitpay\\Model\\Base\\BitpayPaymentsConfig");
+        $base_class_vars = get_class_vars("\\BitpayPayments\\Model\\Base\\BitpayPaymentsConfig");
         $pks = array_diff_key($this_class_vars, $base_class_vars);
 
         return $pks;
@@ -54,7 +54,7 @@ class BitpayPaymentsConfig extends BaseBitpayPaymentsConfig
     protected function getThisVars()
     {
         $this_class_vars = get_object_vars($this);
-        $base_class_vars = get_class_vars("\\Bitpay\\Model\\Base\\BitpayPaymentsConfig");
+        $base_class_vars = get_class_vars("\\BitpayPayments\\Model\\Base\\BitpayPaymentsConfig");
         $pks = array_diff_key($this_class_vars, $base_class_vars);
 
         return $pks;

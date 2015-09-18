@@ -1,7 +1,7 @@
 <?php
 namespace BitpayPayments\Controller;
 
-use Bitpay\Bitpay;
+use BitpayPayments\BitpayPayments;
 use BitpayPayments\Model\BitpayPaymentsConfig;
 use Thelia\Controller\Admin\BaseAdminController;
 use Thelia\Core\Security\Resource\AdminResources;
@@ -33,7 +33,7 @@ class ConfigureBitpayPayments extends BaseAdminController
             $tab="configure_account";
         } catch (\Exception $e) {}
 
-        $form = new \BitpayPayments\Form\ConfigureSandboxBitpay($this->getRequest());
+        $form = new \BitpayPayments\Form\ConfigureSandboxBitpayPayments($this->getRequest());
         try {
             $vform = $this->validateForm($form);
             $tab="configure_sandbox";
@@ -46,7 +46,7 @@ class ConfigureBitpayPayments extends BaseAdminController
         } catch (\Exception $e) {}
         //Redirect to module configuration page
         $this->redirectToRoute("admin.module.configure",array(),
-            array ( 'module_code'=>Bitpay::getModCode(true),
+            array ( 'module_code'=>BitpayPayments::getModCode(true),
                 'current_tab'=>$tab,
                 '_controller' => 'Thelia\\Controller\\Admin\\ModuleController::configureAction'));
     }

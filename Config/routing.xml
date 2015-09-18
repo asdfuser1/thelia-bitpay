@@ -10,15 +10,15 @@
     for the module in the module list. Clicking this button will invoke this route.
 
     <route id="my_route_id" path="/admin/module/bitpay">
-        <default key="_controller">Bitpay\Full\Class\Name\Of\YourConfigurationController::methodName</default>
+        <default key="_controller">BitpayPayments\Full\Class\Name\Of\YourConfigurationController::methodName</default>
     </route>
 
     <route id="my_route_id" path="/admin/module/bitpay/route-name">
-        <default key="_controller">Bitpay\Full\Class\Name\Of\YourAdminController::methodName</default>
+        <default key="_controller">BitpayPayments\Full\Class\Name\Of\YourAdminController::methodName</default>
     </route>
 
     <route id="my_route_id" path="/my/route/name">
-        <default key="_controller">Bitpay\Full\Class\Name\Of\YourOtherController::methodName</default>
+        <default key="_controller">BitpayPayments\Full\Class\Name\Of\YourOtherController::methodName</default>
     </route>
 
     ...add as many routes as required.
@@ -28,8 +28,8 @@
     </route>
     -->
 
-    <route id="bitpay.configure" path="/admin/module/bitpay/configure" methods="post">
-        <default key="_controller">Bitpay\Controller\ConfigureBitpay::configure</default>
+    <route id="bitpay.configure" path="/admin/module/bitpayPayments/configure" methods="post">
+        <default key="_controller">BitpayPayments\Controller\ConfigureBitpayPayments::configure</default>
     </route>
 
 </routes>

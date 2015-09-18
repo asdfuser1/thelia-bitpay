@@ -6,19 +6,18 @@
 
     <loops>
         <!-- sample definition
-        <loop name="MySuperLoop" class="Bitpay\Loop\MySuperLoop" />
+        <loop name="MySuperLoop" class="BitpayPayments\Loop\MySuperLoop" />
         -->
     </loops>
 
     <forms>
-        <!--
-        <form name="MyFormName" class="Bitpay\Form\MySuperForm" />
-        -->
+        <form name="bitpay.configure" class="Bitpay\Form\ConfigureBitpayPayments" />
+        <form name="bitpay.configure.sandbox" class="Bitpay\Form\ConfigureSandboxBitpayPayments" />
     </forms>
 
     <commands>
         <!--
-        <command class="Bitpay\Command\MySuperCommand" />
+        <command class="BitpayPayments\Command\MySuperCommand" />
         -->
     </commands>
 
@@ -30,7 +29,7 @@
 
     <!--
     <hooks>
-        <hook id="bitpay.hook" class="Bitpay\Hook\MySuperHook" scope="request">
+        <hook id="bitpay.hook" class="BitpayPayments\Hook\MySuperHook" scope="request">
             <tag name="hook.event_listener" event="main.body.bottom" type="front|back|pdf|email" method="onMainBodyBottom" />
         </hook>
     </hooks>

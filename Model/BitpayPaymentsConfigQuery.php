@@ -1,8 +1,8 @@
 <?php
 
-namespace Bitpay\Model;
+namespace BitpayPayments\Model;
 
-use Bitpay\Model\Base\BitpayConfigQuery as BaseBitpayConfigQuery;
+use BitpayPayments\Model\Base\BitpayPaymentsConfigQuery as BaseBitpayPaymentsConfigQuery;
 
 
 /**
@@ -15,7 +15,7 @@ use Bitpay\Model\Base\BitpayConfigQuery as BaseBitpayConfigQuery;
  * long as it does not already exist in the output directory.
  *
  */
-class BitpayConfigQuery extends BaseBitpayConfigQuery
+class BitpayPaymentsConfigQuery extends BaseBitpayPaymentsConfigQuery
 {
 
-} // BitpayConfigQuery
+} // BitpayPaymentsConfigQuery

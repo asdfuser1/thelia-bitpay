@@ -1,10 +1,9 @@
 <?php
-namespace Bitpay;
+namespace BitpayPayments;
 
-use Bitpay\Model\BitpayConfig;
+use BitpayPayments\Model\BitpayPaymentsConfig;
 use Propel\Generator\Model\Database;
 use Propel\Runtime\Connection\ConnectionInterface;
-use Symfony\Component\Config\Definition\Exception\Exception;
 use Thelia\Log\Tlog;
 use Thelia\Model\Base\ModuleQuery;
 use Thelia\Model\ModuleImageQuery;
@@ -12,7 +11,7 @@ use Thelia\Model\Order;
 use Thelia\Module\BaseModule;
 use Thelia\Module\PaymentModuleInterface;
 
-class Bitpay extends BaseModule implements PaymentModuleInterface
+class BitpayPayments extends BaseModule implements PaymentModuleInterface
 {
     /* @var \Bitpay\PrivateKey */
     private $privateKey;
@@ -45,7 +44,7 @@ class Bitpay extends BaseModule implements PaymentModuleInterface
         $client = new \Bitpay\Client\Client();
         $adapter = new \Bitpay\Client\Adapter\CurlAdapter();
 
-        $config = new BitpayConfig();
+        $config = new BitpayPaymentsConfig();
         $config->pushValues();
         if ($config->getSandbox()) {
             $pairingKey = $config->getPairingKeySandbox();
@@ -70,7 +69,7 @@ class Bitpay extends BaseModule implements PaymentModuleInterface
             // must create API key
             if (!isset($pairingKey) || $pairingKey == '') {
                 // error: no pairing key
-                $error = "Thelia Bitpay error: No API key or pairing key for environment $environment provided.";
+                $error = "Thelia BitpayPayments error: No API key or pairing key for environment $environment provided.";
                 Tlog::getInstance()->error($error);
                 throw new \Exception($error);
             } else {
@@ -80,13 +79,13 @@ class Bitpay extends BaseModule implements PaymentModuleInterface
                 try {
                     $token = $client->createToken(array(
                         'pairingCode' => $pairingKey,
-                        'label' => 'Thelia Bitpay',
+                        'label' => 'Thelia BitpayPayments',
                         'id' => (string)$sin,
                     ));
                 } catch (\Exception $e) {
                     $request = $client->getRequest();
                     $response = $client->getResponse();
-                    $error = 'Thelia Bitpay error:' . PHP_EOL . PHP_EOL . $request . PHP_EOL . PHP_EOL . $response . PHP_EOL . PHP_EOL;
+                    $error = 'Thelia BitpayPayments error:' . PHP_EOL . PHP_EOL . $request . PHP_EOL . PHP_EOL . $response . PHP_EOL . PHP_EOL;
                     Tlog::getInstance()->error($error);
                     throw new \Exception($error);
                 }
@@ -117,7 +116,7 @@ class Bitpay extends BaseModule implements PaymentModuleInterface
         } catch (\Exception $e) {
             $request = $client->getRequest();
             $response = $client->getResponse();
-            $error = 'Thelia Bitpay error:' . PHP_EOL . PHP_EOL . $request . PHP_EOL . PHP_EOL . $response . PHP_EOL . PHP_EOL;
+            $error = 'Thelia BitpayPayments error:' . PHP_EOL . PHP_EOL . $request . PHP_EOL . PHP_EOL . $response . PHP_EOL . PHP_EOL;
             Tlog::getInstance()->error($error);
             throw new \Exception($error);
         }
@@ -204,9 +203,9 @@ class Bitpay extends BaseModule implements PaymentModuleInterface
         $this->setTitle(
             $module,
             array(
-                "de_DE" => "Bitpay",
-                "en_US" => "Bitpay",
-                "fr_FR" => "Bitpay",
+                "de_DE" => "BitpayPayments",
+                "en_US" => "BitpayPayments",
+                "fr_FR" => "BitpayPayments",
             )
         );
     }
@@ -216,7 +215,7 @@ class Bitpay extends BaseModule implements PaymentModuleInterface
      */
     public function getCode()
     {
-        return "Bitpay";
+        return "BitpayPayments";
     }
 
     /**
@@ -224,7 +223,7 @@ class Bitpay extends BaseModule implements PaymentModuleInterface
      */
     public static function getModCode($flag=false)
     {
-        $obj = new Bitpay();
+        $obj = new BitpayPayments();
         $mod_code = $obj->getCode();
         if($flag) return $mod_code;
         $search = ModuleQuery::create()

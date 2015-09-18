@@ -1,9 +1,9 @@
 <?php
 
-namespace Bitpay\Model\Map;
+namespace BitpayPayments\Model\Map;
 
-use Bitpay\Model\BitpayConfig;
-use Bitpay\Model\BitpayConfigQuery;
+use BitpayPayments\Model\BitpayPaymentsConfig;
+use BitpayPayments\Model\BitpayPaymentsConfigQuery;
 use Propel\Runtime\Propel;
 use Propel\Runtime\ActiveQuery\Criteria;
 use Propel\Runtime\ActiveQuery\InstancePoolTrait;
@@ -26,14 +26,14 @@ use Propel\Runtime\Map\TableMapTrait;
  * (i.e. if it's a text column type).
  *
  */
-class BitpayConfigTableMap extends TableMap
+class BitpayPaymentsConfigTableMap extends TableMap
 {
     use InstancePoolTrait;
     use TableMapTrait;
     /**
      * The (dot-path) name of this class
      */
-    const CLASS_NAME = 'Bitpay.Model.Map.BitpayConfigTableMap';
+    const CLASS_NAME = 'BitpayPayments.Model.Map.BitpayPaymentsConfigTableMap';
 
     /**
      * The default database name for this class
@@ -48,12 +48,12 @@ class BitpayConfigTableMap extends TableMap
     /**
      * The related Propel class for this table
      */
-    const OM_CLASS = '\\Bitpay\\Model\\BitpayConfig';
+    const OM_CLASS = '\\BitpayPayments\\Model\\BitpayPaymentsConfig';
 
     /**
      * A class that can be returned by this tableMap
      */
-    const CLASS_DEFAULT = 'Bitpay.Model.BitpayConfig';
+    const CLASS_DEFAULT = 'BitpayPayments.Model.BitpayPaymentsConfig';
 
     /**
      * The total number of columns
@@ -94,7 +94,7 @@ class BitpayConfigTableMap extends TableMap
     protected static $fieldNames = array (
         self::TYPE_PHPNAME       => array('Name', 'Value', ),
         self::TYPE_STUDLYPHPNAME => array('name', 'value', ),
-        self::TYPE_COLNAME       => array(BitpayConfigTableMap::NAME, BitpayConfigTableMap::VALUE, ),
+        self::TYPE_COLNAME       => array(BitpayPaymentsConfigTableMap::NAME, BitpayPaymentsConfigTableMap::VALUE, ),
         self::TYPE_RAW_COLNAME   => array('NAME', 'VALUE', ),
         self::TYPE_FIELDNAME     => array('name', 'value', ),
         self::TYPE_NUM           => array(0, 1, )
@@ -109,7 +109,7 @@ class BitpayConfigTableMap extends TableMap
     protected static $fieldKeys = array (
         self::TYPE_PHPNAME       => array('Name' => 0, 'Value' => 1, ),
         self::TYPE_STUDLYPHPNAME => array('name' => 0, 'value' => 1, ),
-        self::TYPE_COLNAME       => array(BitpayConfigTableMap::NAME => 0, BitpayConfigTableMap::VALUE => 1, ),
+        self::TYPE_COLNAME       => array(BitpayPaymentsConfigTableMap::NAME => 0, BitpayPaymentsConfigTableMap::VALUE => 1, ),
         self::TYPE_RAW_COLNAME   => array('NAME' => 0, 'VALUE' => 1, ),
         self::TYPE_FIELDNAME     => array('name' => 0, 'value' => 1, ),
         self::TYPE_NUM           => array(0, 1, )
@@ -126,9 +126,9 @@ class BitpayConfigTableMap extends TableMap
     {
         // attributes
         $this->setName('bitpay_config');
-        $this->setPhpName('BitpayConfig');
-        $this->setClassName('\\Bitpay\\Model\\BitpayConfig');
-        $this->setPackage('Bitpay.Model');
+        $this->setPhpName('BitpayPaymentsConfig');
+        $this->setClassName('\\BitpayPayments\\Model\\BitpayPaymentsConfig');
+        $this->setPackage('BitpayPayments.Model');
         $this->setUseIdGenerator(false);
         // columns
         $this->addPrimaryKey('NAME', 'Name', 'VARCHAR', true, 255, null);
@@ -198,7 +198,7 @@ class BitpayConfigTableMap extends TableMap
      */
     public static function getOMClass($withPrefix = true)
     {
-        return $withPrefix ? BitpayConfigTableMap::CLASS_DEFAULT : BitpayConfigTableMap::OM_CLASS;
+        return $withPrefix ? BitpayPaymentsConfigTableMap::CLASS_DEFAULT : BitpayPaymentsConfigTableMap::OM_CLASS;
     }
 
     /**
@@ -212,21 +212,21 @@ class BitpayConfigTableMap extends TableMap
      *
      * @throws PropelException Any exceptions caught during processing will be
      *         rethrown wrapped into a PropelException.
-     * @return array (BitpayConfig object, last column rank)
+     * @return array (BitpayPaymentsConfig object, last column rank)
      */
     public static function populateObject($row, $offset = 0, $indexType = TableMap::TYPE_NUM)
     {
-        $key = BitpayConfigTableMap::getPrimaryKeyHashFromRow($row, $offset, $indexType);
-        if (null !== ($obj = BitpayConfigTableMap::getInstanceFromPool($key))) {
+        $key = BitpayPaymentsConfigTableMap::getPrimaryKeyHashFromRow($row, $offset, $indexType);
+        if (null !== ($obj = BitpayPaymentsConfigTableMap::getInstanceFromPool($key))) {
             // We no longer rehydrate the object, since this can cause data loss.
             // See http://www.propelorm.org/ticket/509
             // $obj->hydrate($row, $offset, true); // rehydrate
-            $col = $offset + BitpayConfigTableMap::NUM_HYDRATE_COLUMNS;
+            $col = $offset + BitpayPaymentsConfigTableMap::NUM_HYDRATE_COLUMNS;
         } else {
-            $cls = BitpayConfigTableMap::OM_CLASS;
+            $cls = BitpayPaymentsConfigTableMap::OM_CLASS;
             $obj = new $cls();
             $col = $obj->hydrate($row, $offset, false, $indexType);
-            BitpayConfigTableMap::addInstanceToPool($obj, $key);
+            BitpayPaymentsConfigTableMap::addInstanceToPool($obj, $key);
         }
 
         return array($obj, $col);
@@ -249,8 +249,8 @@ class BitpayConfigTableMap extends TableMap
         $cls = static::getOMClass(false);
         // populate the object(s)
         while ($row = $dataFetcher->fetch()) {
-            $key = BitpayConfigTableMap::getPrimaryKeyHashFromRow($row, 0, $dataFetcher->getIndexType());
-            if (null !== ($obj = BitpayConfigTableMap::getInstanceFromPool($key))) {
+            $key = BitpayPaymentsConfigTableMap::getPrimaryKeyHashFromRow($row, 0, $dataFetcher->getIndexType());
+            if (null !== ($obj = BitpayPaymentsConfigTableMap::getInstanceFromPool($key))) {
                 // We no longer rehydrate the object, since this can cause data loss.
                 // See http://www.propelorm.org/ticket/509
                 // $obj->hydrate($row, 0, true); // rehydrate
@@ -259,7 +259,7 @@ class BitpayConfigTableMap extends TableMap
                 $obj = new $cls();
                 $obj->hydrate($row);
                 $results[] = $obj;
-                BitpayConfigTableMap::addInstanceToPool($obj, $key);
+                BitpayPaymentsConfigTableMap::addInstanceToPool($obj, $key);
             } // if key exists
         }
 
@@ -280,8 +280,8 @@ class BitpayConfigTableMap extends TableMap
     public static function addSelectColumns(Criteria $criteria, $alias = null)
     {
         if (null === $alias) {
-            $criteria->addSelectColumn(BitpayConfigTableMap::NAME);
-            $criteria->addSelectColumn(BitpayConfigTableMap::VALUE);
+            $criteria->addSelectColumn(BitpayPaymentsConfigTableMap::NAME);
+            $criteria->addSelectColumn(BitpayPaymentsConfigTableMap::VALUE);
         } else {
             $criteria->addSelectColumn($alias . '.NAME');
             $criteria->addSelectColumn($alias . '.VALUE');
@@ -297,7 +297,7 @@ class BitpayConfigTableMap extends TableMap
      */
     public static function getTableMap()
     {
-        return Propel::getServiceContainer()->getDatabaseMap(BitpayConfigTableMap::DATABASE_NAME)->getTable(BitpayConfigTableMap::TABLE_NAME);
+        return Propel::getServiceContainer()->getDatabaseMap(BitpayPaymentsConfigTableMap::DATABASE_NAME)->getTable(BitpayPaymentsConfigTableMap::TABLE_NAME);
     }
 
     /**
@@ -305,16 +305,16 @@ class BitpayConfigTableMap extends TableMap
      */
     public static function buildTableMap()
     {
-      $dbMap = Propel::getServiceContainer()->getDatabaseMap(BitpayConfigTableMap::DATABASE_NAME);
-      if (!$dbMap->hasTable(BitpayConfigTableMap::TABLE_NAME)) {
-        $dbMap->addTableObject(new BitpayConfigTableMap());
+      $dbMap = Propel::getServiceContainer()->getDatabaseMap(BitpayPaymentsConfigTableMap::DATABASE_NAME);
+      if (!$dbMap->hasTable(BitpayPaymentsConfigTableMap::TABLE_NAME)) {
+        $dbMap->addTableObject(new BitpayPaymentsConfigTableMap());
       }
     }
 
     /**
-     * Performs a DELETE on the database, given a BitpayConfig or Criteria object OR a primary key value.
+     * Performs a DELETE on the database, given a BitpayPaymentsConfig or Criteria object OR a primary key value.
      *
-     * @param mixed               $values Criteria or BitpayConfig object or primary key or array of primary keys
+     * @param mixed               $values Criteria or BitpayPaymentsConfig object or primary key or array of primary keys
      *              which is used to create the DELETE statement
      * @param ConnectionInterface $con the connection to use
      * @return int The number of affected rows (if supported by underlying database driver).  This includes CASCADE-related rows
@@ -325,25 +325,25 @@ class BitpayConfigTableMap extends TableMap
      public static function doDelete($values, ConnectionInterface $con = null)
      {
         if (null === $con) {
-            $con = Propel::getServiceContainer()->getWriteConnection(BitpayConfigTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getWriteConnection(BitpayPaymentsConfigTableMap::DATABASE_NAME);
         }
 
         if ($values instanceof Criteria) {
             // rename for clarity
             $criteria = $values;
-        } elseif ($values instanceof \Bitpay\Model\BitpayConfig) { // it's a model object
+        } elseif ($values instanceof \BitpayPayments\Model\BitpayPaymentsConfig) { // it's a model object
             // create criteria based on pk values
             $criteria = $values->buildPkeyCriteria();
         } else { // it's a primary key, or an array of pks
-            $criteria = new Criteria(BitpayConfigTableMap::DATABASE_NAME);
-            $criteria->add(BitpayConfigTableMap::NAME, (array) $values, Criteria::IN);
+            $criteria = new Criteria(BitpayPaymentsConfigTableMap::DATABASE_NAME);
+            $criteria->add(BitpayPaymentsConfigTableMap::NAME, (array) $values, Criteria::IN);
         }
 
-        $query = BitpayConfigQuery::create()->mergeWith($criteria);
+        $query = BitpayPaymentsConfigQuery::create()->mergeWith($criteria);
 
-        if ($values instanceof Criteria) { BitpayConfigTableMap::clearInstancePool();
+        if ($values instanceof Criteria) { BitpayPaymentsConfigTableMap::clearInstancePool();
         } elseif (!is_object($values)) { // it's a primary key, or an array of pks
-            foreach ((array) $values as $singleval) { BitpayConfigTableMap::removeInstanceFromPool($singleval);
+            foreach ((array) $values as $singleval) { BitpayPaymentsConfigTableMap::removeInstanceFromPool($singleval);
             }
         }
 
@@ -358,13 +358,13 @@ class BitpayConfigTableMap extends TableMap
      */
     public static function doDeleteAll(ConnectionInterface $con = null)
     {
-        return BitpayConfigQuery::create()->doDeleteAll($con);
+        return BitpayPaymentsConfigQuery::create()->doDeleteAll($con);
     }
 
     /**
-     * Performs an INSERT on the database, given a BitpayConfig or Criteria object.
+     * Performs an INSERT on the database, given a BitpayPaymentsConfig or Criteria object.
      *
-     * @param mixed               $criteria Criteria or BitpayConfig object containing data that is used to create the INSERT statement.
+     * @param mixed               $criteria Criteria or BitpayPaymentsConfig object containing data that is used to create the INSERT statement.
      * @param ConnectionInterface $con the ConnectionInterface connection to use
      * @return mixed           The new primary key.
      * @throws PropelException Any exceptions caught during processing will be
@@ -373,18 +373,18 @@ class BitpayConfigTableMap extends TableMap
     public static function doInsert($criteria, ConnectionInterface $con = null)
     {
         if (null === $con) {
-            $con = Propel::getServiceContainer()->getWriteConnection(BitpayConfigTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getWriteConnection(BitpayPaymentsConfigTableMap::DATABASE_NAME);
         }
 
         if ($criteria instanceof Criteria) {
             $criteria = clone $criteria; // rename for clarity
         } else {
-            $criteria = $criteria->buildCriteria(); // build Criteria from BitpayConfig object
+            $criteria = $criteria->buildCriteria(); // build Criteria from BitpayPaymentsConfig object
         }
 
 
         // Set the correct dbName
-        $query = BitpayConfigQuery::create()->mergeWith($criteria);
+        $query = BitpayPaymentsConfigQuery::create()->mergeWith($criteria);
 
         try {
             // use transaction because $criteria could contain info
@@ -400,7 +400,7 @@ class BitpayConfigTableMap extends TableMap
         return $pk;
     }
 
-} // BitpayConfigTableMap
+} // BitpayPaymentsConfigTableMap
 // This is the static code needed to register the TableMap for this table with the main Propel class.
 //
-BitpayConfigTableMap::buildTableMap();
+BitpayPaymentsConfigTableMap::buildTableMap();

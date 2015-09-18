@@ -1,10 +1,10 @@
 <?php
 
-namespace Bitpay\Model;
+namespace BitpayPayments\Model;
 
-use Bitpay\Model\Base\BitpayConfig as BaseBitpayConfig;
+use BitpayPayments\Model\Base\BitpayPaymentsConfig as BaseBitpayPaymentsConfig;
 
-class BitpayConfig extends BaseBitpayConfig
+class BitpayPaymentsConfig extends BaseBitpayPaymentsConfig
 {
     protected $pairingKey = null;
     protected $apiKey = null;
@@ -19,7 +19,7 @@ class BitpayConfig extends BaseBitpayConfig
         if ($keysflag) {
             $pks = array_keys($pks);
         }
-        $query = BitpayConfigQuery::create()->findPks($pks);
+        $query = BitpayPaymentsConfigQuery::create()->findPks($pks);
         return $query;
     }
 
@@ -39,10 +39,10 @@ class BitpayConfig extends BaseBitpayConfig
      */
     public static function getSelfVars()
     {
-        $obj = new BitpayConfig();
+        $obj = new BitpayPaymentsConfig();
         $obj->pushValues();
         $this_class_vars = get_object_vars($obj);
-        $base_class_vars = get_class_vars("\\Bitpay\\Model\\Base\\BitpayConfig");
+        $base_class_vars = get_class_vars("\\Bitpay\\Model\\Base\\BitpayPaymentsConfig");
         $pks = array_diff_key($this_class_vars, $base_class_vars);
 
         return $pks;
@@ -54,7 +54,7 @@ class BitpayConfig extends BaseBitpayConfig
     protected function getThisVars()
     {
         $this_class_vars = get_object_vars($this);
-        $base_class_vars = get_class_vars("\\Bitpay\\Model\\Base\\BitpayConfig");
+        $base_class_vars = get_class_vars("\\Bitpay\\Model\\Base\\BitpayPaymentsConfig");
         $pks = array_diff_key($this_class_vars, $base_class_vars);
 
         return $pks;
@@ -64,7 +64,7 @@ class BitpayConfig extends BaseBitpayConfig
     {
         $query = $this->getDbValues();
         foreach ($query as $var) {
-            /** @var BitpayConfig $var */
+            /** @var BitpayPaymentsConfig $var */
             $name = $var->getName();
             if ($this->$name === null) {
                 $this->$name = $var->getValue();
@@ -80,13 +80,13 @@ class BitpayConfig extends BaseBitpayConfig
         $dbvals = $this->getDbValues();
         $isnew=array();
         foreach ($dbvals as $var) {
-            /** @var BitpayConfig $var */
+            /** @var BitpayPaymentsConfig $var */
             $isnew[$var->getName()] = true;
         }
         $this->pushValues();
         $vars=$this->getThisVars();
         foreach ($vars as $key=>$value) {
-            $tmp = new BitpayConfig();
+            $tmp = new BitpayPaymentsConfig();
             $tmp->setNew(!isset($isnew[$key]));
             $tmp->setName($key);
             $tmp->setValue($value);
@@ -103,7 +103,7 @@ class BitpayConfig extends BaseBitpayConfig
 
     /**
      * @param  string                        $pairingKey
-     * @return \Bitpay\Model\BitpayConfig    $this
+     * @return \BitpayPayments\Model\BitpayPaymentsConfig    $this
      */
     public function setPairingKey($pairingKey){
         $this->pairingKey = $pairingKey;
@@ -119,7 +119,7 @@ class BitpayConfig extends BaseBitpayConfig
 
     /**
      * @param  string                        $apiKey
-     * @return \Bitpay\Model\BitpayConfig    $this
+     * @return \BitpayPayments\Model\BitpayPaymentsConfig    $this
      */
     public function setApiKey($apiKey){
         $this->apiKey = $apiKey;
@@ -135,7 +135,7 @@ class BitpayConfig extends BaseBitpayConfig
 
     /**
      * @param  string                        $sandbox
-     * @return \Bitpay\Model\BitpayConfig    $this
+     * @return \BitpayPayments\Model\BitpayPaymentsConfig    $this
      */
     public function setSandbox($sandbox){
         $this->sandbox = $sandbox;
@@ -151,7 +151,7 @@ class BitpayConfig extends BaseBitpayConfig
 
     /**
      * @param  string                        $pairingKey_sandbox
-     * @return \Bitpay\Model\BitpayConfig    $this
+     * @return \BitpayPayments\Model\BitpayPaymentsConfig    $this
      */
     public function setPairingKeySandbox($pairingKey_sandbox){
         $this->pairingKey_sandbox = $pairingKey_sandbox;
@@ -167,7 +167,7 @@ class BitpayConfig extends BaseBitpayConfig
 
     /**
      * @param  string                        $apiKey_sandbox
-     * @return \Bitpay\Model\BitpayConfig    $this
+     * @return \BitpayPayments\Model\BitpayPaymentsConfig    $this
      */
     public function setApiKeySandbox($apiKey_sandbox){
         $this->apiKey_sandbox = $apiKey_sandbox;

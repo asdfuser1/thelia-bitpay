@@ -1,11 +1,11 @@
 <?php
 
-namespace Bitpay\Model\Base;
+namespace BitpayPayments\Model\Base;
 
 use \Exception;
 use \PDO;
-use Bitpay\Model\BitpayConfigQuery as ChildBitpayConfigQuery;
-use Bitpay\Model\Map\BitpayConfigTableMap;
+use BitpayPayments\Model\BitpayPaymentsConfigQuery as ChildBitpayPaymentsConfigQuery;
+use BitpayPayments\Model\Map\BitpayPaymentsConfigTableMap;
 use Propel\Runtime\Propel;
 use Propel\Runtime\ActiveQuery\Criteria;
 use Propel\Runtime\ActiveQuery\ModelCriteria;
@@ -17,12 +17,12 @@ use Propel\Runtime\Exception\PropelException;
 use Propel\Runtime\Map\TableMap;
 use Propel\Runtime\Parser\AbstractParser;
 
-abstract class BitpayConfig implements ActiveRecordInterface 
+abstract class BitpayPaymentsConfig implements ActiveRecordInterface 
 {
     /**
      * TableMap class name
      */
-    const TABLE_MAP = '\\Bitpay\\Model\\Map\\BitpayConfigTableMap';
+    const TABLE_MAP = '\\BitpayPayments\\Model\\Map\\BitpayPaymentsConfigTableMap';
 
 
     /**
@@ -72,7 +72,7 @@ abstract class BitpayConfig implements ActiveRecordInterface
     protected $alreadyInSave = false;
 
     /**
-     * Initializes internal state of Bitpay\Model\Base\BitpayConfig object.
+     * Initializes internal state of BitpayPayments\Model\Base\BitpayPaymentsConfig object.
      */
     public function __construct()
     {
@@ -167,9 +167,9 @@ abstract class BitpayConfig implements ActiveRecordInterface
     }
 
     /**
-     * Compares this with another <code>BitpayConfig</code> instance.  If
-     * <code>obj</code> is an instance of <code>BitpayConfig</code>, delegates to
-     * <code>equals(BitpayConfig)</code>.  Otherwise, returns <code>false</code>.
+     * Compares this with another <code>BitpayPaymentsConfig</code> instance.  If
+     * <code>obj</code> is an instance of <code>BitpayPaymentsConfig</code>, delegates to
+     * <code>equals(BitpayPaymentsConfig)</code>.  Otherwise, returns <code>false</code>.
      *
      * @param  mixed   $obj The object to compare to.
      * @return boolean Whether equal to the object specified.
@@ -252,7 +252,7 @@ abstract class BitpayConfig implements ActiveRecordInterface
      * @param string $name  The virtual column name
      * @param mixed  $value The value to give to the virtual column
      *
-     * @return BitpayConfig The current object, for fluid interface
+     * @return BitpayPaymentsConfig The current object, for fluid interface
      */
     public function setVirtualColumn($name, $value)
     {
@@ -284,7 +284,7 @@ abstract class BitpayConfig implements ActiveRecordInterface
      *                       or a format name ('XML', 'YAML', 'JSON', 'CSV')
      * @param string $data The source data to import from
      *
-     * @return BitpayConfig The current object, for fluid interface
+     * @return BitpayPaymentsConfig The current object, for fluid interface
      */
     public function importFrom($parser, $data)
     {
@@ -355,7 +355,7 @@ abstract class BitpayConfig implements ActiveRecordInterface
      * Set the value of [name] column.
      * 
      * @param      string $v new value
-     * @return   \Bitpay\Model\BitpayConfig The current object (for fluent API support)
+     * @return   \BitpayPayments\Model\BitpayPaymentsConfig The current object (for fluent API support)
      */
     public function setName($v)
     {
@@ -365,7 +365,7 @@ abstract class BitpayConfig implements ActiveRecordInterface
 
         if ($this->name !== $v) {
             $this->name = $v;
-            $this->modifiedColumns[BitpayConfigTableMap::NAME] = true;
+            $this->modifiedColumns[BitpayPaymentsConfigTableMap::NAME] = true;
         }
 
 
@@ -376,7 +376,7 @@ abstract class BitpayConfig implements ActiveRecordInterface
      * Set the value of [value] column.
      * 
      * @param      string $v new value
-     * @return   \Bitpay\Model\BitpayConfig The current object (for fluent API support)
+     * @return   \BitpayPayments\Model\BitpayPaymentsConfig The current object (for fluent API support)
      */
     public function setValue($v)
     {
@@ -386,7 +386,7 @@ abstract class BitpayConfig implements ActiveRecordInterface
 
         if ($this->value !== $v) {
             $this->value = $v;
-            $this->modifiedColumns[BitpayConfigTableMap::VALUE] = true;
+            $this->modifiedColumns[BitpayPaymentsConfigTableMap::VALUE] = true;
         }
 
 
@@ -430,10 +430,10 @@ abstract class BitpayConfig implements ActiveRecordInterface
         try {
 
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 0 + $startcol : BitpayConfigTableMap::translateFieldName('Name', TableMap::TYPE_PHPNAME, $indexType)];
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 0 + $startcol : BitpayPaymentsConfigTableMap::translateFieldName('Name', TableMap::TYPE_PHPNAME, $indexType)];
             $this->name = (null !== $col) ? (string) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 1 + $startcol : BitpayConfigTableMap::translateFieldName('Value', TableMap::TYPE_PHPNAME, $indexType)];
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 1 + $startcol : BitpayPaymentsConfigTableMap::translateFieldName('Value', TableMap::TYPE_PHPNAME, $indexType)];
             $this->value = (null !== $col) ? (string) $col : null;
             $this->resetModified();
 
@@ -443,10 +443,10 @@ abstract class BitpayConfig implements ActiveRecordInterface
                 $this->ensureConsistency();
             }
 
-            return $startcol + 2; // 2 = BitpayConfigTableMap::NUM_HYDRATE_COLUMNS.
+            return $startcol + 2; // 2 = BitpayPaymentsConfigTableMap::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
-            throw new PropelException("Error populating \Bitpay\Model\BitpayConfig object", 0, $e);
+            throw new PropelException("Error populating \BitpayPayments\Model\BitpayPaymentsConfig object", 0, $e);
         }
     }
 
@@ -488,13 +488,13 @@ abstract class BitpayConfig implements ActiveRecordInterface
         }
 
         if ($con === null) {
-            $con = Propel::getServiceContainer()->getReadConnection(BitpayConfigTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getReadConnection(BitpayPaymentsConfigTableMap::DATABASE_NAME);
         }
 
         // We don't need to alter the object instance pool; we're just modifying this instance
         // already in the pool.
 
-        $dataFetcher = ChildBitpayConfigQuery::create(null, $this->buildPkeyCriteria())->setFormatter(ModelCriteria::FORMAT_STATEMENT)->find($con);
+        $dataFetcher = ChildBitpayPaymentsConfigQuery::create(null, $this->buildPkeyCriteria())->setFormatter(ModelCriteria::FORMAT_STATEMENT)->find($con);
         $row = $dataFetcher->fetch();
         $dataFetcher->close();
         if (!$row) {
@@ -513,8 +513,8 @@ abstract class BitpayConfig implements ActiveRecordInterface
      * @param      ConnectionInterface $con
      * @return void
      * @throws PropelException
-     * @see BitpayConfig::setDeleted()
-     * @see BitpayConfig::isDeleted()
+     * @see BitpayPaymentsConfig::setDeleted()
+     * @see BitpayPaymentsConfig::isDeleted()
      */
     public function delete(ConnectionInterface $con = null)
     {
@@ -523,12 +523,12 @@ abstract class BitpayConfig implements ActiveRecordInterface
         }
 
         if ($con === null) {
-            $con = Propel::getServiceContainer()->getWriteConnection(BitpayConfigTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getWriteConnection(BitpayPaymentsConfigTableMap::DATABASE_NAME);
         }
 
         $con->beginTransaction();
         try {
-            $deleteQuery = ChildBitpayConfigQuery::create()
+            $deleteQuery = ChildBitpayPaymentsConfigQuery::create()
                 ->filterByPrimaryKey($this->getPrimaryKey());
             $ret = $this->preDelete($con);
             if ($ret) {
@@ -565,7 +565,7 @@ abstract class BitpayConfig implements ActiveRecordInterface
         }
 
         if ($con === null) {
-            $con = Propel::getServiceContainer()->getWriteConnection(BitpayConfigTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getWriteConnection(BitpayPaymentsConfigTableMap::DATABASE_NAME);
         }
 
         $con->beginTransaction();
@@ -585,7 +585,7 @@ abstract class BitpayConfig implements ActiveRecordInterface
                     $this->postUpdate($con);
                 }
                 $this->postSave($con);
-                BitpayConfigTableMap::addInstanceToPool($this);
+                BitpayPaymentsConfigTableMap::addInstanceToPool($this);
             } else {
                 $affectedRows = 0;
             }
@@ -648,10 +648,10 @@ abstract class BitpayConfig implements ActiveRecordInterface
 
 
          // check the columns in natural order for more readable SQL queries
-        if ($this->isColumnModified(BitpayConfigTableMap::NAME)) {
+        if ($this->isColumnModified(BitpayPaymentsConfigTableMap::NAME)) {
             $modifiedColumns[':p' . $index++]  = 'NAME';
         }
-        if ($this->isColumnModified(BitpayConfigTableMap::VALUE)) {
+        if ($this->isColumnModified(BitpayPaymentsConfigTableMap::VALUE)) {
             $modifiedColumns[':p' . $index++]  = 'VALUE';
         }
 
@@ -710,7 +710,7 @@ abstract class BitpayConfig implements ActiveRecordInterface
      */
     public function getByName($name, $type = TableMap::TYPE_PHPNAME)
     {
-        $pos = BitpayConfigTableMap::translateFieldName($name, $type, TableMap::TYPE_NUM);
+        $pos = BitpayPaymentsConfigTableMap::translateFieldName($name, $type, TableMap::TYPE_NUM);
         $field = $this->getByPosition($pos);
 
         return $field;
@@ -754,11 +754,11 @@ abstract class BitpayConfig implements ActiveRecordInterface
      */
     public function toArray($keyType = TableMap::TYPE_PHPNAME, $includeLazyLoadColumns = true, $alreadyDumpedObjects = array())
     {
-        if (isset($alreadyDumpedObjects['BitpayConfig'][$this->getPrimaryKey()])) {
+        if (isset($alreadyDumpedObjects['BitpayPaymentsConfig'][$this->getPrimaryKey()])) {
             return '*RECURSION*';
         }
-        $alreadyDumpedObjects['BitpayConfig'][$this->getPrimaryKey()] = true;
-        $keys = BitpayConfigTableMap::getFieldNames($keyType);
+        $alreadyDumpedObjects['BitpayPaymentsConfig'][$this->getPrimaryKey()] = true;
+        $keys = BitpayPaymentsConfigTableMap::getFieldNames($keyType);
         $result = array(
             $keys[0] => $this->getName(),
             $keys[1] => $this->getValue(),
@@ -785,7 +785,7 @@ abstract class BitpayConfig implements ActiveRecordInterface
      */
     public function setByName($name, $value, $type = TableMap::TYPE_PHPNAME)
     {
-        $pos = BitpayConfigTableMap::translateFieldName($name, $type, TableMap::TYPE_NUM);
+        $pos = BitpayPaymentsConfigTableMap::translateFieldName($name, $type, TableMap::TYPE_NUM);
 
         return $this->setByPosition($pos, $value);
     }
@@ -829,7 +829,7 @@ abstract class BitpayConfig implements ActiveRecordInterface
      */
     public function fromArray($arr, $keyType = TableMap::TYPE_PHPNAME)
     {
-        $keys = BitpayConfigTableMap::getFieldNames($keyType);
+        $keys = BitpayPaymentsConfigTableMap::getFieldNames($keyType);
 
         if (array_key_exists($keys[0], $arr)) $this->setName($arr[$keys[0]]);
         if (array_key_exists($keys[1], $arr)) $this->setValue($arr[$keys[1]]);
@@ -842,10 +842,10 @@ abstract class BitpayConfig implements ActiveRecordInterface
      */
     public function buildCriteria()
     {
-        $criteria = new Criteria(BitpayConfigTableMap::DATABASE_NAME);
+        $criteria = new Criteria(BitpayPaymentsConfigTableMap::DATABASE_NAME);
 
-        if ($this->isColumnModified(BitpayConfigTableMap::NAME)) $criteria->add(BitpayConfigTableMap::NAME, $this->name);
-        if ($this->isColumnModified(BitpayConfigTableMap::VALUE)) $criteria->add(BitpayConfigTableMap::VALUE, $this->value);
+        if ($this->isColumnModified(BitpayPaymentsConfigTableMap::NAME)) $criteria->add(BitpayPaymentsConfigTableMap::NAME, $this->name);
+        if ($this->isColumnModified(BitpayPaymentsConfigTableMap::VALUE)) $criteria->add(BitpayPaymentsConfigTableMap::VALUE, $this->value);
 
         return $criteria;
     }
@@ -860,8 +860,8 @@ abstract class BitpayConfig implements ActiveRecordInterface
      */
     public function buildPkeyCriteria()
     {
-        $criteria = new Criteria(BitpayConfigTableMap::DATABASE_NAME);
-        $criteria->add(BitpayConfigTableMap::NAME, $this->name);
+        $criteria = new Criteria(BitpayPaymentsConfigTableMap::DATABASE_NAME);
+        $criteria->add(BitpayPaymentsConfigTableMap::NAME, $this->name);
 
         return $criteria;
     }
@@ -902,7 +902,7 @@ abstract class BitpayConfig implements ActiveRecordInterface
      * If desired, this method can also make copies of all associated (fkey referrers)
      * objects.
      *
-     * @param      object $copyObj An object of \Bitpay\Model\BitpayConfig (or compatible) type.
+     * @param      object $copyObj An object of \BitpayPayments\Model\BitpayPaymentsConfig (or compatible) type.
      * @param      boolean $deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
      * @param      boolean $makeNew Whether to reset autoincrement PKs and make the object new.
      * @throws PropelException
@@ -925,7 +925,7 @@ abstract class BitpayConfig implements ActiveRecordInterface
      * objects.
      *
      * @param      boolean $deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
-     * @return                 \Bitpay\Model\BitpayConfig Clone of current object.
+     * @return                 \BitpayPayments\Model\BitpayPaymentsConfig Clone of current object.
      * @throws PropelException
      */
     public function copy($deepCopy = false)
@@ -975,7 +975,7 @@ abstract class BitpayConfig implements ActiveRecordInterface
      */
     public function __toString()
     {
-        return (string) $this->exportTo(BitpayConfigTableMap::DEFAULT_STRING_FORMAT);
+        return (string) $this->exportTo(BitpayPaymentsConfigTableMap::DEFAULT_STRING_FORMAT);
     }
 
     /**

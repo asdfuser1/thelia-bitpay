@@ -2,29 +2,29 @@
 <module xmlns="http://thelia.net/schema/dic/module"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://thelia.net/schema/dic/module http://thelia.net/schema/dic/module/module-2_1.xsd">
-    <fullnamespace>Bitpay\Bitpay</fullnamespace>
+    <fullnamespace>BitpayPayments\BitpayPayments</fullnamespace>
     <descriptive locale="en_US">
-        <title>Automatically generated module - please update module.xml file</title>
+        <title>Bitpay</title>
         <!--
         <subtitle></subtitle>
         <description></description>
         <postscriptum></postscriptum>
         -->
     </descriptive>
-    <descriptive locale="fr_FR">
-        <title>Module généré automatiquement - éditez le fichier module.xml</title>
+    <descriptive locale="de_DE">
+        <title>Bitpay</title>
     </descriptive>
     <!-- <logo></logo> -->
     <languages>
+		<language>de_DE</language>
         <language>en_US</language>
-        <language>fr_FR</language>
     </languages>
     <version></version>
     <author>
         <name></name>
         <email></email>
     </author>
-    <type>classic</type>
+    <type>payment</type>
     <!--
     module dependencies
     <required>

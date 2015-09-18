@@ -1,12 +1,12 @@
 <?php
 
-namespace Bitpay\Model\Base;
+namespace BitpayPayments\Model\Base;
 
 use \Exception;
 use \PDO;
-use Bitpay\Model\BitpayConfig as ChildBitpayConfig;
-use Bitpay\Model\BitpayConfigQuery as ChildBitpayConfigQuery;
-use Bitpay\Model\Map\BitpayConfigTableMap;
+use BitpayPayments\Model\BitpayPaymentsConfig as ChildBitpayPaymentsConfig;
+use BitpayPayments\Model\BitpayPaymentsConfigQuery as ChildBitpayPaymentsConfigQuery;
+use BitpayPayments\Model\Map\BitpayPaymentsConfigTableMap;
 use Propel\Runtime\Propel;
 use Propel\Runtime\ActiveQuery\Criteria;
 use Propel\Runtime\ActiveQuery\ModelCriteria;
@@ -18,55 +18,55 @@ use Propel\Runtime\Exception\PropelException;
  *
  * 
  *
- * @method     ChildBitpayConfigQuery orderByName($order = Criteria::ASC) Order by the name column
- * @method     ChildBitpayConfigQuery orderByValue($order = Criteria::ASC) Order by the value column
+ * @method     ChildBitpayPaymentsConfigQuery orderByName($order = Criteria::ASC) Order by the name column
+ * @method     ChildBitpayPaymentsConfigQuery orderByValue($order = Criteria::ASC) Order by the value column
  *
- * @method     ChildBitpayConfigQuery groupByName() Group by the name column
- * @method     ChildBitpayConfigQuery groupByValue() Group by the value column
+ * @method     ChildBitpayPaymentsConfigQuery groupByName() Group by the name column
+ * @method     ChildBitpayPaymentsConfigQuery groupByValue() Group by the value column
  *
- * @method     ChildBitpayConfigQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
- * @method     ChildBitpayConfigQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
- * @method     ChildBitpayConfigQuery innerJoin($relation) Adds a INNER JOIN clause to the query
+ * @method     ChildBitpayPaymentsConfigQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
+ * @method     ChildBitpayPaymentsConfigQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
+ * @method     ChildBitpayPaymentsConfigQuery innerJoin($relation) Adds a INNER JOIN clause to the query
  *
- * @method     ChildBitpayConfig findOne(ConnectionInterface $con = null) Return the first ChildBitpayConfig matching the query
- * @method     ChildBitpayConfig findOneOrCreate(ConnectionInterface $con = null) Return the first ChildBitpayConfig matching the query, or a new ChildBitpayConfig object populated from the query conditions when no match is found
+ * @method     ChildBitpayPaymentsConfig findOne(ConnectionInterface $con = null) Return the first ChildBitpayPaymentsConfig matching the query
+ * @method     ChildBitpayPaymentsConfig findOneOrCreate(ConnectionInterface $con = null) Return the first ChildBitpayPaymentsConfig matching the query, or a new ChildBitpayPaymentsConfig object populated from the query conditions when no match is found
  *
- * @method     ChildBitpayConfig findOneByName(string $name) Return the first ChildBitpayConfig filtered by the name column
- * @method     ChildBitpayConfig findOneByValue(string $value) Return the first ChildBitpayConfig filtered by the value column
+ * @method     ChildBitpayPaymentsConfig findOneByName(string $name) Return the first ChildBitpayPaymentsConfig filtered by the name column
+ * @method     ChildBitpayPaymentsConfig findOneByValue(string $value) Return the first ChildBitpayPaymentsConfig filtered by the value column
  *
- * @method     array findByName(string $name) Return ChildBitpayConfig objects filtered by the name column
- * @method     array findByValue(string $value) Return ChildBitpayConfig objects filtered by the value column
+ * @method     array findByName(string $name) Return ChildBitpayPaymentsConfig objects filtered by the name column
+ * @method     array findByValue(string $value) Return ChildBitpayPaymentsConfig objects filtered by the value column
  *
  */
-abstract class BitpayConfigQuery extends ModelCriteria
+abstract class BitpayPaymentsConfigQuery extends ModelCriteria
 {
     
     /**
-     * Initializes internal state of \Bitpay\Model\Base\BitpayConfigQuery object.
+     * Initializes internal state of \BitpayPayments\Model\Base\BitpayPaymentsConfigQuery object.
      *
      * @param     string $dbName The database name
      * @param     string $modelName The phpName of a model, e.g. 'Book'
      * @param     string $modelAlias The alias for the model in this query, e.g. 'b'
      */
-    public function __construct($dbName = 'thelia', $modelName = '\\Bitpay\\Model\\BitpayConfig', $modelAlias = null)
+    public function __construct($dbName = 'thelia', $modelName = '\\BitpayPayments\\Model\\BitpayPaymentsConfig', $modelAlias = null)
     {
         parent::__construct($dbName, $modelName, $modelAlias);
     }
 
     /**
-     * Returns a new ChildBitpayConfigQuery object.
+     * Returns a new ChildBitpayPaymentsConfigQuery object.
      *
      * @param     string $modelAlias The alias of a model in the query
      * @param     Criteria $criteria Optional Criteria to build the query from
      *
-     * @return ChildBitpayConfigQuery
+     * @return ChildBitpayPaymentsConfigQuery
      */
     public static function create($modelAlias = null, $criteria = null)
     {
-        if ($criteria instanceof \Bitpay\Model\BitpayConfigQuery) {
+        if ($criteria instanceof \BitpayPayments\Model\BitpayPaymentsConfigQuery) {
             return $criteria;
         }
-        $query = new \Bitpay\Model\BitpayConfigQuery();
+        $query = new \BitpayPayments\Model\BitpayPaymentsConfigQuery();
         if (null !== $modelAlias) {
             $query->setModelAlias($modelAlias);
         }
@@ -89,19 +89,19 @@ abstract class BitpayConfigQuery extends ModelCriteria
      * @param mixed $key Primary key to use for the query
      * @param ConnectionInterface $con an optional connection object
      *
-     * @return ChildBitpayConfig|array|mixed the result, formatted by the current formatter
+     * @return ChildBitpayPaymentsConfig|array|mixed the result, formatted by the current formatter
      */
     public function findPk($key, $con = null)
     {
         if ($key === null) {
             return null;
         }
-        if ((null !== ($obj = BitpayConfigTableMap::getInstanceFromPool((string) $key))) && !$this->formatter) {
+        if ((null !== ($obj = BitpayPaymentsConfigTableMap::getInstanceFromPool((string) $key))) && !$this->formatter) {
             // the object is already in the instance pool
             return $obj;
         }
         if ($con === null) {
-            $con = Propel::getServiceContainer()->getReadConnection(BitpayConfigTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getReadConnection(BitpayPaymentsConfigTableMap::DATABASE_NAME);
         }
         $this->basePreSelect($con);
         if ($this->formatter || $this->modelAlias || $this->with || $this->select
@@ -120,7 +120,7 @@ abstract class BitpayConfigQuery extends ModelCriteria
      * @param     mixed $key Primary key to use for the query
      * @param     ConnectionInterface $con A connection object
      *
-     * @return   ChildBitpayConfig A model object, or null if the key is not found
+     * @return   ChildBitpayPaymentsConfig A model object, or null if the key is not found
      */
     protected function findPkSimple($key, $con)
     {
@@ -135,9 +135,9 @@ abstract class BitpayConfigQuery extends ModelCriteria
         }
         $obj = null;
         if ($row = $stmt->fetch(\PDO::FETCH_NUM)) {
-            $obj = new ChildBitpayConfig();
+            $obj = new ChildBitpayPaymentsConfig();
             $obj->hydrate($row);
-            BitpayConfigTableMap::addInstanceToPool($obj, (string) $key);
+            BitpayPaymentsConfigTableMap::addInstanceToPool($obj, (string) $key);
         }
         $stmt->closeCursor();
 
@@ -150,7 +150,7 @@ abstract class BitpayConfigQuery extends ModelCriteria
      * @param     mixed $key Primary key to use for the query
      * @param     ConnectionInterface $con A connection object
      *
-     * @return ChildBitpayConfig|array|mixed the result, formatted by the current formatter
+     * @return ChildBitpayPaymentsConfig|array|mixed the result, formatted by the current formatter
      */
     protected function findPkComplex($key, $con)
     {
@@ -192,12 +192,12 @@ abstract class BitpayConfigQuery extends ModelCriteria
      *
      * @param     mixed $key Primary key to use for the query
      *
-     * @return ChildBitpayConfigQuery The current query, for fluid interface
+     * @return ChildBitpayPaymentsConfigQuery The current query, for fluid interface
      */
     public function filterByPrimaryKey($key)
     {
 
-        return $this->addUsingAlias(BitpayConfigTableMap::NAME, $key, Criteria::EQUAL);
+        return $this->addUsingAlias(BitpayPaymentsConfigTableMap::NAME, $key, Criteria::EQUAL);
     }
 
     /**
@@ -205,12 +205,12 @@ abstract class BitpayConfigQuery extends ModelCriteria
      *
      * @param     array $keys The list of primary key to use for the query
      *
-     * @return ChildBitpayConfigQuery The current query, for fluid interface
+     * @return ChildBitpayPaymentsConfigQuery The current query, for fluid interface
      */
     public function filterByPrimaryKeys($keys)
     {
 
-        return $this->addUsingAlias(BitpayConfigTableMap::NAME, $keys, Criteria::IN);
+        return $this->addUsingAlias(BitpayPaymentsConfigTableMap::NAME, $keys, Criteria::IN);
     }
 
     /**
@@ -226,7 +226,7 @@ abstract class BitpayConfigQuery extends ModelCriteria
      *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return ChildBitpayConfigQuery The current query, for fluid interface
+     * @return ChildBitpayPaymentsConfigQuery The current query, for fluid interface
      */
     public function filterByName($name = null, $comparison = null)
     {
@@ -239,7 +239,7 @@ abstract class BitpayConfigQuery extends ModelCriteria
             }
         }
 
-        return $this->addUsingAlias(BitpayConfigTableMap::NAME, $name, $comparison);
+        return $this->addUsingAlias(BitpayPaymentsConfigTableMap::NAME, $name, $comparison);
     }
 
     /**
@@ -255,7 +255,7 @@ abstract class BitpayConfigQuery extends ModelCriteria
      *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
-     * @return ChildBitpayConfigQuery The current query, for fluid interface
+     * @return ChildBitpayPaymentsConfigQuery The current query, for fluid interface
      */
     public function filterByValue($value = null, $comparison = null)
     {
@@ -268,20 +268,20 @@ abstract class BitpayConfigQuery extends ModelCriteria
             }
         }
 
-        return $this->addUsingAlias(BitpayConfigTableMap::VALUE, $value, $comparison);
+        return $this->addUsingAlias(BitpayPaymentsConfigTableMap::VALUE, $value, $comparison);
     }
 
     /**
      * Exclude object from result
      *
-     * @param   ChildBitpayConfig $bitpayConfig Object to remove from the list of results
+     * @param   ChildBitpayPaymentsConfig $bitpayConfig Object to remove from the list of results
      *
-     * @return ChildBitpayConfigQuery The current query, for fluid interface
+     * @return ChildBitpayPaymentsConfigQuery The current query, for fluid interface
      */
     public function prune($bitpayConfig = null)
     {
         if ($bitpayConfig) {
-            $this->addUsingAlias(BitpayConfigTableMap::NAME, $bitpayConfig->getName(), Criteria::NOT_EQUAL);
+            $this->addUsingAlias(BitpayPaymentsConfigTableMap::NAME, $bitpayConfig->getName(), Criteria::NOT_EQUAL);
         }
 
         return $this;
@@ -296,7 +296,7 @@ abstract class BitpayConfigQuery extends ModelCriteria
     public function doDeleteAll(ConnectionInterface $con = null)
     {
         if (null === $con) {
-            $con = Propel::getServiceContainer()->getWriteConnection(BitpayConfigTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getWriteConnection(BitpayPaymentsConfigTableMap::DATABASE_NAME);
         }
         $affectedRows = 0; // initialize var to track total num of affected rows
         try {
@@ -307,8 +307,8 @@ abstract class BitpayConfigQuery extends ModelCriteria
             // Because this db requires some delete cascade/set null emulation, we have to
             // clear the cached instance *after* the emulation has happened (since
             // instances get re-added by the select statement contained therein).
-            BitpayConfigTableMap::clearInstancePool();
-            BitpayConfigTableMap::clearRelatedInstancePool();
+            BitpayPaymentsConfigTableMap::clearInstancePool();
+            BitpayPaymentsConfigTableMap::clearRelatedInstancePool();
 
             $con->commit();
         } catch (PropelException $e) {
@@ -320,9 +320,9 @@ abstract class BitpayConfigQuery extends ModelCriteria
     }
 
     /**
-     * Performs a DELETE on the database, given a ChildBitpayConfig or Criteria object OR a primary key value.
+     * Performs a DELETE on the database, given a ChildBitpayPaymentsConfig or Criteria object OR a primary key value.
      *
-     * @param mixed               $values Criteria or ChildBitpayConfig object or primary key or array of primary keys
+     * @param mixed               $values Criteria or ChildBitpayPaymentsConfig object or primary key or array of primary keys
      *              which is used to create the DELETE statement
      * @param ConnectionInterface $con the connection to use
      * @return int The number of affected rows (if supported by underlying database driver).  This includes CASCADE-related rows
@@ -333,13 +333,13 @@ abstract class BitpayConfigQuery extends ModelCriteria
      public function delete(ConnectionInterface $con = null)
      {
         if (null === $con) {
-            $con = Propel::getServiceContainer()->getWriteConnection(BitpayConfigTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getWriteConnection(BitpayPaymentsConfigTableMap::DATABASE_NAME);
         }
 
         $criteria = $this;
 
         // Set the correct dbName
-        $criteria->setDbName(BitpayConfigTableMap::DATABASE_NAME);
+        $criteria->setDbName(BitpayPaymentsConfigTableMap::DATABASE_NAME);
 
         $affectedRows = 0; // initialize var to track total num of affected rows
 
@@ -349,10 +349,10 @@ abstract class BitpayConfigQuery extends ModelCriteria
             $con->beginTransaction();
             
 
-        BitpayConfigTableMap::removeInstanceFromPool($criteria);
+        BitpayPaymentsConfigTableMap::removeInstanceFromPool($criteria);
         
             $affectedRows += ModelCriteria::delete($con);
-            BitpayConfigTableMap::clearRelatedInstancePool();
+            BitpayPaymentsConfigTableMap::clearRelatedInstancePool();
             $con->commit();
 
             return $affectedRows;
@@ -362,4 +362,4 @@ abstract class BitpayConfigQuery extends ModelCriteria
         }
     }
 
-} // BitpayConfigQuery
+} // BitpayPaymentsConfigQuery

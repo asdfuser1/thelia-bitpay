@@ -1,29 +1,29 @@
 <?php
-namespace Bitpay\Controller;
+namespace BitpayPayments\Controller;
 
 use Bitpay\Bitpay;
-use Bitpay\Model\BitpayConfig;
+use BitpayPayments\Model\BitpayPaymentsConfig;
 use Thelia\Controller\Admin\BaseAdminController;
 use Thelia\Core\Security\Resource\AdminResources;
 use Thelia\Core\Security\AccessManager;
 
 /**
- * Class ConfigureBitpay
- * @package Bitpay\Controller
+ * Class ConfigureBitpayPayments
+ * @package BitpayPayments\Controller
  */
-class ConfigureBitpay extends BaseAdminController
+class ConfigureBitpayPayments extends BaseAdminController
 {
     public function configure()
     {
-        if (null !== $response = $this->checkAuth(array(AdminResources::MODULE), array('Bitpay'), AccessManager::UPDATE)) {
+        if (null !== $response = $this->checkAuth(array(AdminResources::MODULE), array('BitpayPayments'), AccessManager::UPDATE)) {
             return $response;
         }
 
-        $conf = new BitpayConfig();
+        $conf = new BitpayPaymentsConfig();
         $one_is_done=0;
         $tab="";
 
-        $form = new \Bitpay\Form\ConfigureBitpay($this->getRequest());
+        $form = new \BitpayPayments\Form\ConfigureBitpayPayments($this->getRequest());
         try {
             $vform = $this->validateForm($form);
             $conf->setApiKey($vform->get('apiKey')->getData())
@@ -33,7 +33,7 @@ class ConfigureBitpay extends BaseAdminController
             $tab="configure_account";
         } catch (\Exception $e) {}
 
-        $form = new \Bitpay\Form\ConfigureSandboxBitpay($this->getRequest());
+        $form = new \BitpayPayments\Form\ConfigureSandboxBitpay($this->getRequest());
         try {
             $vform = $this->validateForm($form);
             $tab="configure_sandbox";

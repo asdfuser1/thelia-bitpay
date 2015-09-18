@@ -20,14 +20,13 @@
 /*	    along with this program. If not, see <http://www.gnu.org/licenses/>.         */
 /*                                                                                   */
 /*************************************************************************************/
-namespace Bitpay\Form;
+namespace BitpayPayments\Form;
 
-use Bitpay\Model\BitpayConfig;
-use Symfony\Component\Validator\Constraints\NotBlank;
+use BitpayPayments\Model\BitpayPaymentsConfig;
 use Thelia\Core\Translation\Translator;
 use Thelia\Form\BaseForm;
 
-class ConfigureBitpay extends BaseForm
+class ConfigureBitpayPayments extends BaseForm
 {
     /**
      *
@@ -51,7 +50,7 @@ class ConfigureBitpay extends BaseForm
      */
     protected function buildForm()
     {
-        $config_data=BitpayConfig::read();
+        $config_data=BitpayPaymentsConfig::read();
         $this->formBuilder
             ->add("pairingKey","text", array(
                 'label'=>Translator::getInstance()->trans("Pairing Key"),

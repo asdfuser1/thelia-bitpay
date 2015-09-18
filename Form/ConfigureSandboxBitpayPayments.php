@@ -1,13 +1,11 @@
 <?php
-namespace Bitpay\Form;
+namespace BitpayPayments\Form;
 
-use Bitpay\Bitpay;
-use Bitpay\Model\BitpayConfig;
-use Symfony\Component\Validator\Constraints\NotBlank;
+use BitpayPayments\Model\BitpayPaymentsConfig;
 use Thelia\Core\Translation\Translator;
 use Thelia\Form\BaseForm;
 
-class ConfigureSandboxBitpay extends BaseForm
+class ConfigureSandboxBitpayPayments extends BaseForm
 {
     /**
      *
@@ -31,7 +29,7 @@ class ConfigureSandboxBitpay extends BaseForm
      */
     protected function buildForm()
     {
-        $config_data = BitpayConfig::read();
+        $config_data = BitpayPaymentsConfig::read();
         $this->formBuilder
             ->add("pairingKey","text", array(
                 'label'=>Translator::getInstance()->trans("Pairing Key"),
